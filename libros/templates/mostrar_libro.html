@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book Show</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <h1>Title : {{books.titulo}}</h1>
+                <ul class="list">
+                    {% for autor in books.autores: %}
+                        <li>{{autor.apellidos}} {{autor.nombres}}</li>
+                    {% endfor %}
+                </ul>
+                <div class="link_home">
+                    <a href="/authors">Home</a>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1">
+                <h1>Add Book's favorite</h1>
+                <form class="form_libros" action="/add_author_favorite" method="POST">
+                    <div class="row">
+                        <input type="hidden" name="libro_id" value="{{books.id}}">
+                        <label class="col-md-3" for="autor_id">First Name :</label>
+                        <select class="col-md-5" name="autor_id" id="autor_id">
+                            {% for autor in AuthorsNoFavorite: %}
+                                <option value="{{autor.id}}">{{autor.apellidos}} {{autor.nombres}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn_create btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

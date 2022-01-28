@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+    <title>Authors</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-5 offset-md-1">
+                <form class="form_libros" action="/create_author" method="POST">
+                    <h1>New Author</h1>
+                    <div class="row">
+                        <label class="col-md-3" for="nombres">First Name :</label>
+                        <input class="col-md-5" name="nombres" type="text" placeholder="First name of Author">
+                    </div>
+                    <div class="row">
+                        <label class="col-md-3" for="apellidos">Last Name :</label>
+                        <input class="col-md-5" name="apellidos" type="text" placeholder="Last name of Author">
+                    </div>
+                    <button type="submit" class="btn_create btn btn-primary">Create</button>
+                </form>
+                <div class="link_book">
+                    <a href="/books">Add Book</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 offset-md-1">
+                <h1>All Authors</h1>
+                <ul class="list">
+                    {% for autor in autores: %}
+                        <li>
+                            <a href="/authors/{{autor.id}}">{{autor.apellidos}} {{autor.nombres}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
